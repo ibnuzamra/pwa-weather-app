@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pwa-apps
+  name: pwa-apps
+spec:
+  replicas: 3
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: pwa-apps
+    spec:
+      containers:
+      - image: ibnuzamra/pwa-apps:latest
+        imagePullPolicy: Always
+        name: pwa-apps
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 600m
+            memory: 768Mi
+          requests:
+            cpu: 200m
+            memory: 384Mi
+  selector:
+    matchLabels:
+      app: pwa-apps
